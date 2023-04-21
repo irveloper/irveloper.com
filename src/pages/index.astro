@@ -1,81 +1,87 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Card from '../components/shared/Card.astro';
+import Skill from '../components/shared/Skill.astro';
+import HeroBanner from '../components/shared/HeroBanner.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="Welcome to Irveloper's website">
+<!--    HeroBanner-->
+    <div class="w-full max-w-screen-xl">
+        <div class="">
+            <HeroBanner />
+        </div>
+        <div class="flex flex-col justify-center items-center bg-secondary  md:mx-auto py-12 px-5">
+            <h2 class="text-3xl text-white">About Me</h2>
+            <p class="text-lg text-gray-400 pt-6">
+                I am a Full - Stack Web Developer, I have been working with frontend and backend technologies for 6 years. I have solid knowledge on the backend with PHP and Node.js and on the frontend with Vue.js and React.js and even JQuery.
+            </p>
+        </div>
+<!--        SECTION TBD-->
+<!--        <div class="w-full flex flex-col justify-center items-center bg-secondary px-0 md:px-52 py-12">-->
+<!--            <h2 class="text-3xl text-white">My Skills</h2>-->
+<!--            <div class="w-full flex flex-col flex-wrap justify-center items-center md:flex-row gap-4 pt-6">-->
+<!--                {[...Array(15).keys()].map((i) => (-->
+<!--                    <div class="flex-grow">-->
+<!--                        <Skill-->
+<!--                                title="Frontend"-->
+<!--                                description="I have solid knowledge on the frontend with Vue.js and React.js and even JQuery."-->
+<!--                                icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"-->
+<!--                        />-->
+<!--                    </div>-->
+<!--                ))}-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="w-full flex flex-col justify-center items-center bg-primary px-5 md:px-52 py-12">
+            <h2 class="text-3xl text-white">My Projects</h2>
+            <p class="text-gray-400 pt-5">
+                I've been working in B2C and B2B projects,working with different backend and frontend technologies and frameworks
+            </p>
+            <div class="flex items-baseline gap-2 py-5">
+                {[...Array(3).keys()].map((i) => (
+                <span class="bg-indigo-400 text-gray-700 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                    Action {i}
+                  </span>
+                ))}
+            </div>
+            <div class="w-full flex flex-col flex-wrap justify-center items-center md:flex-row gap-4 pt-6">
+                {[...Array(3).keys()].map((i) => (
+                    <Card
+                            class="w-1/3"
+                            title="Frontend"
+                            description="I have solid knowledge on the frontend with Vue.js and React.js and even JQuery."
+                            icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
+                    />
+                ))}
+            </div>
+        </div>
+        <div class="w-full flex flex-col justify-center items-center bg-secondary px-0 md:px-52 py-12">
+            <h4 class="text-white text-xl">Contact Me</h4>
+            <form>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            Phone number
+                        </label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" name="floating_company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company (Ex. Google)</label>
+                    </div>
+                </div>
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+        </div>
+    </div>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>

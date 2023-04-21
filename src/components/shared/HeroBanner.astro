@@ -1,0 +1,94 @@
+
+<div class="bg-primary overflow-hidden relative">
+    <div class="hero-banner overflow-hidden rectangle"></div>
+    <div class="ellipse-green z-0 overflow-hidden"></div>
+    <div class="ellipse-blue overflow-hidden z-0"></div>
+    <div
+            class={
+            `w-full flex flex-col justify-center items-center space-evenly py-10 overflow-y-hidden flex flex-col justify-center items-center md:flex-row px-0 md:px-52 lg:py-28 md:flex-row`
+            }
+    >
+        <div class="w-3/3 md:w-2/3 flex justify-center z-10 relative md:justify-start">
+            <picture class="w-2/4">
+                <img
+                        src="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
+                        alt="Image"
+                        class="object-cover w-3/3 h-full"
+                >
+            </picture>
+        </div>
+        <div
+                class="flex flex-col justify-left text-white gap-y-5 relative z-10 text-center w-3/3 md:1/3 md:text-left pt-10 pb-5"
+        >
+            <span class="text-sm hidden md:block">Hey there</span>
+            <h1 class="text-5xl max-w-sm md:max-w-fit word-break text-extrabpold">
+                I'm Irving Caamal
+            </h1>
+            <span>Systems Engineer / FullStack Web Developer</span>
+            <button
+                    class="py-2 px-4 bg-purple-600 text-white self-center md:self-start rounded-lg"
+            >
+                Let's work together <!--TODO: add chevron down icon-->
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-banner {
+
+        /*transform: matrix(-1, 0, 0, 1, 0, 0);*/
+        /*background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);*/
+    }
+    .ellipse-blue {
+        /* Ellipse 2 */
+        position: absolute;
+        align-self: center;
+        width: 80vw;
+        max-width: 300px;
+        max-height: 300px;
+        height: 80%;
+        left: 10%;
+        top: 80px;;
+        background: #5552FF;
+        opacity: 0.5;
+        box-shadow: 0px 4px 250px #5552FF;
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        border-radius: 50%;
+    }
+    .ellipse-green {
+        /* Ellipse 1 */
+        position: absolute;
+        width: 80vw;
+        max-width: 200px;
+        max-height: 200px;
+        height: 80%;
+        left: 60%;
+        top: 50vh;
+        background: #47A604;
+        opacity: 0.5;
+        box-shadow: 0px 4px 200px #48A507;
+        border-radius: 50%;
+    }
+    .rectangle {
+        z-index: 10;
+        /* Rectangle 5 */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.01);
+        backdrop-filter: blur(250px);
+        /* Note: backdrop-filter has minimal browser support */
+
+
+
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform,-webkit-transform;
+        -webkit-transition-timing-function: cubic-bezier(.645,.045,.355,1);
+        transition-timing-function: cubic-bezier(.645,.045,.355,1);
+    }
+</style>
