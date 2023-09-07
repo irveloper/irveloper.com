@@ -13,7 +13,11 @@ module.exports = {
 		colors: {
 			...colors, // include default colors
 			primary: '#121927',
-			secondary: '#252E40'
+			darkblue: '#252E40',
+			secondary: '#252E40',
+			tertiary: '#5552FF',
+			muted: '#3E4658',
+			accent: '#BABABA',
 		}
 	},
 	plugins: [],
