@@ -4,11 +4,13 @@ import Card from '../components/shared/Card.astro';
 import Skill from '../components/shared/Skill.astro';
 import HeroBanner from '../components/shared/HeroBanner.astro';
 import ContactForm from '../components/shared/ContactForm.astro';
+import ProjectList from '../components/domain/homepage/ProjectList.jsx'
+import { technologiesList } from '../utils/__mocks__/data.tsx';
 ---
 
 <Layout title="Welcome to Irveloper's website">
     <!--    HeroBanner-->
-    <div class="w-full">
+    <div class="w-full container">
         <div class="">
             <HeroBanner/>
         </div>
@@ -16,52 +18,33 @@ import ContactForm from '../components/shared/ContactForm.astro';
             <div class="container flex flex-col  items-center justify-center">
                 <h2 class="text-3xl text-white">About Me</h2>
                 <p class="text-lg text-gray-400 pt-6">
-                    I am a Full - Stack Web Developer, I have been working with frontend and backend technologies for 6
-                    years. I have solid knowledge on the backend with PHP and Node.js and on the frontend with Vue.js
-                    and React.js and even JQuery.
+                    Software Engineer, with +6 years of experience, developing software products and solutions in B2B and B2C industries, working with backend and frontend.
                 </p>
             </div>
         </div>
-        <section class="w-full flex flex-col justify-center items-center bg-secondary px-0 md:px-52 py-12">
-            <header class="flex justify-center items-center">
+        <section class="w-full flex flex-col justify-center items-center bg-secondary px-0  mx-auto px-8">
+            <header class="flex justify-center items-center flex flex-col gap-2">
                 <h2 class="text-3xl text-white">My Preferred Stack</h2>
+                <p>
+                    Tools and technologies that I enjoy most
+                </p>
             </header>
-            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 justify-center items-center md:flex-row gap-4 pt-6">
-                {[...Array(14).keys()].map((i) => (
-                <div class="flex-grow">
-                    <Skill
-                            title="Frontend"
-                            description="I have solid knowledge on the frontend with Vue.js and React.js and even JQuery."
-                            icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
-                    />
+            <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8  md:flex-row gap-4 pt-6">
+                {technologiesList.map((item) => (
+                <div class="flex-grow" key={item.title}>
+                    <button className="p-4 bg-red-50">
+                        <Skill
+
+                                title={item.title}
+                                description="I have solid knowledge on the frontend with Vue.js and React.js and even JQuery."
+                                icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
+                        />
+                    </button>
                 </div>
                 ))}
             </div>
         </section>
-        <div class="w-full flex flex-col justify-center items-center bg-primary px-5 md:px-52 py-12">
-            <h2 class="text-3xl text-white">My Projects</h2>
-            <p class="text-gray-400 pt-5">
-                I've been working in B2C and B2B projects,working with different backend and frontend technologies and
-                frameworks
-            </p>
-            <div class="flex items-baseline gap-2 py-5">
-                {[...Array(4).keys()].map((i) => (
-                <span class="bg-indigo-400 text-gray-700 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
-                    Action {i}
-                  </span>
-                ))}
-            </div>
-            <div class="grid grid-cols-1 justify-between gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3">
-                {[...Array(3).keys()].map((i) => (
-                <Card
-                        class="flex w-50"
-                        title="Frontend"
-                        description="I have solid knowledge on the frontend with Vue.js and React.js and even JQuery."
-                        icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
-                />
-                ))}
-            </div>
-        </div>
+       <ProjectList client:load/>
         <ContactForm/>
     </div>
 </Layout>
