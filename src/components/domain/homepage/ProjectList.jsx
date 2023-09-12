@@ -1,22 +1,41 @@
-import { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Pill from '../../shared/Pill.tsx';
-import Card from '../../shared/Card';
 import ShowMoreItems from "../../shared/ShowMoreItems.tsx";
 import { projectsList } from '../../../utils/__mocks__/data';
 
 const MAX_ITEMS = 3;
 const DEFAULT_PROJECT = 'All';
-function ProjectList() {
+
+const DEFAULT_FILTER_ITEMS = [
+    {
+        id: 0,
+        attributes: {
+            name: DEFAULT_PROJECT,
+        }
+    }
+];
+
+function ProjectList(props) {
+    const { filterItems, items } = props;
+    const [filteredItems] = useState(DEFAULT_FILTER_ITEMS.concat(filterItems));
     const [activeItem, setActiveItem] = useState(DEFAULT_PROJECT);
-    const [allItems, setAllItems] = useState(projectsList);
+    const [allItems, setAllItems] = useState(items);
     const currentItem = '';
     const handleClick = (newItem) => {
+
+        console.log({
+            newItem
+        })
         setActiveItem(newItem.title);
         if (newItem.title === DEFAULT_PROJECT) {
-            setAllItems(projectsList);
+            setAllItems(items);
         }
         else {
-            setAllItems(projectsList.filter((item) => item.title === newItem.title));
+            const filteredItems = items.filter((item) =>
+                item.attributes.field.data.attributes.name === newItem.title
+            );
+
+            setAllItems(filteredItems);
         }
     }
     let WRAPPER = (children) => <div className={projectsList.length + 1 >= MAX_ITEMS ? 'hidden': ''}>{children}</div>;
@@ -29,17 +48,17 @@ function ProjectList() {
                 frameworks
             </p>
             <div className="flex flex-wrap justify-center  gap-2 py-8">
-                {projectsList?.map((project) => (
+                {filteredItems && filteredItems?.length > 0  && filteredItems?.map((project) => (
                     <Pill
-                        key={project?.title}
-                        title={project?.title}
+                        key={project?.attributes.name}
+                        title={project?.attributes.name}
                         onClick={handleClick}
-                        isActive={project?.title === activeItem}
+                        isActive={activeItem === project?.attributes.name}
                     />
                 ))}
             </div>
             <div className="grid grid-cols-1 justify-between gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3">
-                <ShowMoreItems allItems={allItems} initialVisibleItems={2} itemsPerClick={2} />
+                <ShowMoreItems items={allItems} initialVisibleItems={2} itemsPerClick={2} />
             </div>
         </div>
     );
