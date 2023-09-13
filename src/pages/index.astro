@@ -1,16 +1,33 @@
 ---
+import React from 'react';
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/shared/Card.astro';
 import Skill from '../components/shared/Skill.astro';
 import HeroBanner from '../components/shared/HeroBanner.astro';
 import ContactForm from '../components/shared/ContactForm.astro';
 import ProjectList from '../components/domain/homepage/ProjectList.jsx'
-import { technologiesList } from '../utils/__mocks__/data.tsx';
+
+
+import fetchApi from '../../lib/strapi';
+import type Article from '../../interfaces/article';
+
+const technologiesList = await fetchApi({
+endpoint: '/technologies?populate[icon][fields]=url',
+});
+
+const fields = await fetchApi({
+endpoint: '/fields',
+});
+
+const projects = await fetchApi({
+endpoint: '/projects?populate[images][fields]=url&populate[technologies][fields]=name&populate[field][fields]=name',
+});
+
 ---
 
 <Layout title="Welcome to Irveloper's website">
     <!--    HeroBanner-->
-    <div class="w-full container">
+    <div class="w-full">
         <div class="">
             <HeroBanner/>
         </div>
@@ -29,22 +46,25 @@ import { technologiesList } from '../utils/__mocks__/data.tsx';
                     Tools and technologies that I enjoy most
                 </p>
             </header>
-            <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8  md:flex-row gap-4 pt-6">
-                {technologiesList.map((item) => (
+            <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8  md:flex-row gap-4 p-0">
+                {technologiesList?.data && technologiesList.data.map((item) => (
                 <div class="flex-grow" key={item.title}>
-                    <button className="p-4 bg-red-50">
+                    <button className="p-0">
                         <Skill
-
-                                title={item.title}
-                                description="I have solid knowledge on the frontend with Vue.js and React.js and even JQuery."
-                                icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
+                                title={item?.attributes.name}
+                                description={item.attributes.description}
+                                icon={item?.attributes.icon?.data?.attributes?.url}
                         />
                     </button>
                 </div>
                 ))}
             </div>
         </section>
-       <ProjectList client:load/>
+       <ProjectList
+               filterItems={fields?.data}
+               items={projects?.data}
+               client:only="react"
+       />
         <ContactForm/>
     </div>
 </Layout>

@@ -2,29 +2,42 @@ import React, { useState } from 'react';
 import Card from "./Card";
 
 interface ItemProps {
-    title: string;
-    description: string;
-    icon: string;
-    projects: {
-        title: string;
+    attributes: {
+        name: string;
         description: string;
-    }[]
+        icon: string;
+        technologies: {
+            data: {
+                attributes: {
+                    name: string;
+                    description: string;
+                }
+            }[]
+        }
+        images: {
+            data: {
+                attributes: {
+                    url: string;
+                }
+            }[]
+        }
+    }
 }
 interface ShowMoreItemsProps {
-    allItems: ItemProps[];
+    items: ItemProps[];
     initialVisibleItems?: number;
     itemsPerClick?: number;
 }
 
 const ShowMoreItems: React.FC<ShowMoreItemsProps> = ({
- allItems,
+ items,
  initialVisibleItems = 3,
  itemsPerClick = 3,
 }) => {
     const [visibleItems, setVisibleItems] = useState(initialVisibleItems);
 
     const handleShowMore = () => {
-        if (visibleItems < allItems.length) {
+        if (visibleItems < items.length) {
             setVisibleItems(visibleItems + itemsPerClick);
         } else {
             setVisibleItems(initialVisibleItems);
@@ -33,24 +46,27 @@ const ShowMoreItems: React.FC<ShowMoreItemsProps> = ({
 
     return (
         <div className="container mx-auto">
-            <h1 className="text-3xl font-bold mb-4">Show More Items Component</h1>
             <ul className="flex gap-2 flex-col flex-wrap">
-                {allItems.slice(0, visibleItems).map((project, index) => {
-                    return project?.projects?.map((item, index) => (
+                {items && items.slice(0, visibleItems).map((item) => {
+                    return (
                         <Card
-                            key={item.title}
-                            title={item.title}
-                            description={item.description}
-                            icon="https://res.cloudinary.com/dybzxgodg/image/upload/v1678262715/irveloper/personal/profile.png"
+                            key={item.attributes.name}
+                            title={item.attributes.name}
+                            description={item.attributes.description}
+                            pills={item.attributes.technologies.data}
+                            image={item.attributes.images.data[0].attributes.url}
                         />
-                    ))
+                    )
                 })}
             </ul>
-            <div className="flex justify-center py-5">
-                <button className="bg-tertiary py-3 px-3 rounded-2xl hover:border-2" onClick={handleShowMore}>
-                    {visibleItems < allItems.length ? 'See all projects' : 'See less projects'}
-                </button>
-            </div>
+            {items.length > 2 && (
+                <div className="flex justify-center py-5">
+                    <button className="bg-tertiary py-3 px-3 rounded-2xl hover:border-2" onClick={handleShowMore}>
+                        {items && visibleItems < items.length ? 'See all projects' : 'See less projects'}
+                    </button>
+                </div>
+            )}
+
         </div>
     );
 };

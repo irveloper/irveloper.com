@@ -5,13 +5,13 @@ body: string;
 href: string;
 }
 
-const { href, title, body } = Astro.props;
+const { title, description, icon } = Astro.props;
 ---
 
 <span class="bg-red-600">
     <img
-            src="https://res.cloudinary.com/dybzxgodg/image/upload/v1678263773/Utils/development/icons/JS_iqomrb.svg"
-            alt="Logo"
-            class="object-cover p-2"
+            src={icon}
+            alt={description}
+            class="object-cover p-0"
     >
 </span>
