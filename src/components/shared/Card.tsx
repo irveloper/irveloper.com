@@ -5,6 +5,7 @@ interface IPillProps {
         name: string;
     }
 }
+
 interface ICardProps {
     title: string;
     description: string;
@@ -13,11 +14,11 @@ interface ICardProps {
 }
 
 function Card({
-                  title,
-                  description,
-                  image,
-                  pills
-              }: ICardProps) {
+  title,
+  description,
+  image,
+  pills
+}: ICardProps) {
     return (
         <div className="wrapper bg-transparent text-gray-100 hover:border-2 hover:border-amber-100 rounded-lg">
             <div>
