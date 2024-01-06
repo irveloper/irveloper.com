@@ -39,17 +39,17 @@ endpoint: '/projects?populate[images][fields]=url&populate[technologies][fields]
                 </p>
             </div>
         </div>
-        <section class="w-full flex flex-col justify-center items-center bg-secondary px-0  mx-auto px-8">
-            <header class="flex justify-center items-center flex flex-col gap-2">
+        <section class="w-full flex flex-col justify-center items-center bg-secondary mx-auto px-8">
+            <header class="flex justify-center items-center flex-col gap-2">
                 <h2 class="text-3xl text-white">My Preferred Stack</h2>
                 <p>
                     Tools and technologies that I enjoy most
                 </p>
             </header>
-            <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8  md:flex-row gap-4 p-0">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8  md:flex-row gap-4 p-0">
                 {technologiesList?.data && technologiesList.data.map((item) => (
                 <div class="flex-grow" key={item.title}>
-                    <button className="p-0">
+                    <button class="p-0">
                         <Skill
                                 title={item?.attributes.name}
                                 description={item.attributes.description}
