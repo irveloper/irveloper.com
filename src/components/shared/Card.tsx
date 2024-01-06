@@ -5,6 +5,7 @@ interface IPillProps {
         name: string;
     }
 }
+
 interface ICardProps {
     title: string;
     description: string;
@@ -13,16 +14,16 @@ interface ICardProps {
 }
 
 function Card({
-                  title,
-                  description,
-                  image,
-                  pills
-              }: ICardProps) {
+  title,
+  description,
+  image,
+  pills
+}: ICardProps) {
     return (
-        <div className="wrapper bg-transparent text-gray-100 hover:border-2 hover:border-amber-100 rounded-lg">
-            <div>
-                <picture className="w-full h-full object-cover object-center rounded-lg shadow-md ">
-                    <img src={image} alt=" random imgee" className="rounded-lg p-2 bg-gray-500"/>
+        <div className="flex mx-auto w-full flex-grow">
+            <div className='w-full'>
+                <picture className="w-96 h-full object-cover object-center rounded-lg shadow-md ">
+                    <img src={image} alt=" random imgee" className="rounded-lg p-2 bg-gray-500 h-64 w-96"/>
                 </picture>
                 <div className="relative px-2">
                     <div className="flex flex-col bg-primary py-6 px-0 rounded-lg shadow-lg pt-4 gap-y-2 ">

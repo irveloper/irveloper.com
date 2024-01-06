@@ -46,7 +46,7 @@ const ShowMoreItems: React.FC<ShowMoreItemsProps> = ({
 
     return (
         <div className="container mx-auto">
-            <ul className="flex gap-2 flex-col flex-wrap">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:flex-row gap-4 p-0">
                 {items && items.slice(0, visibleItems).map((item) => {
                     return (
                         <Card

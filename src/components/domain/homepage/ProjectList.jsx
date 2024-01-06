@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Pill from '../../shared/Pill.tsx';
 import ShowMoreItems from "../../shared/ShowMoreItems.tsx";
-import { projectsList } from '../../../utils/__mocks__/data';
+import { projectsList } from '../../../utils/__mocks__/data.tsx';
 
 const MAX_ITEMS = 3;
 const DEFAULT_PROJECT = 'All';
@@ -22,10 +22,6 @@ function ProjectList(props) {
     const [allItems, setAllItems] = useState(items);
     const currentItem = '';
     const handleClick = (newItem) => {
-
-        console.log({
-            newItem
-        })
         setActiveItem(newItem.title);
         if (newItem.title === DEFAULT_PROJECT) {
             setAllItems(items);
@@ -41,7 +37,7 @@ function ProjectList(props) {
     let WRAPPER = (children) => <div className={projectsList.length + 1 >= MAX_ITEMS ? 'hidden': ''}>{children}</div>;
 
     return (
-        <div className="w-full flex flex-col justify-center items-center bg-primary px-5 md:px-52 py-12">
+        <div className="w-full flex flex-col justify-center items-center bg-primary px-5 py-12 mx-auto">
             <h2 className="text-3xl text-white">My Projects</h2>
             <p className="text-gray-400 pt-5">
                 I've been working in B2C and B2B projects,working with different backend and frontend technologies and
@@ -57,7 +53,7 @@ function ProjectList(props) {
                     />
                 ))}
             </div>
-            <div className="grid grid-cols-1 justify-between gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="flex justify-center items-center">
                 <ShowMoreItems items={allItems} initialVisibleItems={2} itemsPerClick={2} />
             </div>
         </div>
